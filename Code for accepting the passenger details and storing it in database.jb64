@@ -1,0 +1,167 @@
+[
+    {
+        "id": "c586dca6.0824d",
+        "type": "tab",
+        "label": "Flow for creating a form to enter user details",
+        "disabled": false,
+        "info": "This flow creates a form which gets the passenger details such as Name, Phone number, Email-id, pin code, Address and these details will be stored in the cloud database in IBM."
+    },
+    {
+        "id": "dcc022c1.cfb8",
+        "type": "ui_form",
+        "z": "c586dca6.0824d",
+        "name": "",
+        "label": "Passenger Registration",
+        "group": "aaf3d43a.d1bc48",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Enter your name",
+                "value": "Name",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Enter your phone number",
+                "value": "Phone number",
+                "type": "number",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Enter your email-id",
+                "value": "Email-id",
+                "type": "email",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Enter your address",
+                "value": "Address",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Enter the pin code",
+                "value": "Pin code",
+                "type": "number",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Enter the password",
+                "value": "Password",
+                "type": "password",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "Name": "",
+            "Phone number": "",
+            "Email-id": "",
+            "Address": "",
+            "Pin code": "",
+            "Password": ""
+        },
+        "payload": "",
+        "submit": "Submit",
+        "cancel": "Cancel",
+        "topic": "",
+        "x": 170,
+        "y": 320,
+        "wires": [
+            [
+                "6e159d22.f917f4",
+                "c3926b67.594be8"
+            ]
+        ]
+    },
+    {
+        "id": "6e159d22.f917f4",
+        "type": "function",
+        "z": "c586dca6.0824d",
+        "name": "Output message to the passenger",
+        "func": "msg.payload=\"Hey \"+msg.payload.Name+\" your registration is successfull\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 380,
+        "y": 180,
+        "wires": [
+            [
+                "a8a0d32b.5a2d5",
+                "650430f5.0aef6"
+            ]
+        ]
+    },
+    {
+        "id": "a8a0d32b.5a2d5",
+        "type": "debug",
+        "z": "c586dca6.0824d",
+        "name": "Output message",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 120,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "650430f5.0aef6",
+        "type": "ui_text",
+        "z": "c586dca6.0824d",
+        "group": "aaf3d43a.d1bc48",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Status",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "x": 500,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "c3926b67.594be8",
+        "type": "cloudant out",
+        "z": "c586dca6.0824d",
+        "name": "Database to store the passenger information",
+        "cloudant": "",
+        "database": "passenger_information",
+        "service": "node-red-sling-cloudant-1591681487761-86457",
+        "payonly": false,
+        "operation": "insert",
+        "x": 510,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "aaf3d43a.d1bc48",
+        "type": "ui_group",
+        "z": "",
+        "name": "Passenger Details",
+        "tab": "afeeb65a.a9bfd8",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "afeeb65a.a9bfd8",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Registration",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    }
+]
